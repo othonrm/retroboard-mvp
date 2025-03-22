@@ -87,6 +87,16 @@ const handleDragEnd = (evt: DragEvent) => {
     moveNote(evt, toColumn);
   }
 };
+
+const showEditForm = (payload: MouseEvent) => {
+  const target = payload.target as HTMLElement;
+  const note = target.closest(".note");
+  console.log(note)
+  const text = note?.textContent?.slice(0, -1).trim();
+  if (note) {
+
+  }
+}
 </script>
 
 <template>
@@ -113,7 +123,7 @@ const handleDragEnd = (evt: DragEvent) => {
         <draggable v-model="goodNotes" :group="{ name: 'notes', pull: true, put: true }" item-key="id" class="notes"
           :data-column="'good'" @end="handleDragEnd" force-fallback fallback-class="sortable-drag">
           <template #item="{ element }">
-            <div class="note" :data-id="element.id">
+            <div @dblclick="showEditForm" class="note" :data-id="element.id">
               {{ element.text }}
               <button @click="removeNote(element.id)" class="delete-btn">×</button>
             </div>
@@ -139,7 +149,7 @@ const handleDragEnd = (evt: DragEvent) => {
         <draggable v-model="badNotes" :group="{ name: 'notes', pull: true, put: true }" item-key="id" class="notes"
           :data-column="'bad'" @end="handleDragEnd" force-fallback fallback-class="sortable-drag">
           <template #item="{ element }">
-            <div class="note" :data-id="element.id">
+            <div @dblclick="showEditForm" class="note" :data-id="element.id">
               {{ element.text }}
               <button @click="removeNote(element.id)" class="delete-btn">×</button>
             </div>
@@ -165,7 +175,7 @@ const handleDragEnd = (evt: DragEvent) => {
         <draggable v-model="improveNotes" :group="{ name: 'notes', pull: true, put: true }" item-key="id" class="notes"
           :data-column="'improve'" @end="handleDragEnd" force-fallback fallback-class="sortable-drag">
           <template #item="{ element }">
-            <div class="note" :data-id="element.id">
+            <div @dblclick="showEditForm" class="note" :data-id="element.id">
               {{ element.text }}
               <button @click="removeNote(element.id)" class="delete-btn">×</button>
             </div>
@@ -191,7 +201,7 @@ const handleDragEnd = (evt: DragEvent) => {
         <draggable v-model="shoutOutNotes" :group="{ name: 'notes', pull: true, put: true }" item-key="id" class="notes"
           :data-column="'shout-out'" @end="handleDragEnd" force-fallback fallback-class="sortable-drag">
           <template #item="{ element }">
-            <div class="note" :data-id="element.id">
+            <div @dblclick="showEditForm" class="note" :data-id="element.id">
               {{ element.text }}
               <button @click="removeNote(element.id)" class="delete-btn">×</button>
             </div>
@@ -217,7 +227,7 @@ const handleDragEnd = (evt: DragEvent) => {
         <draggable v-model="actionNotes" :group="{ name: 'notes', pull: true, put: true }" item-key="id" class="notes"
           :data-column="'action'" @end="handleDragEnd" force-fallback fallback-class="sortable-drag">
           <template #item="{ element }">
-            <div class="note" :data-id="element.id">
+            <div @dblclick="showEditForm" class="note" :data-id="element.id">
               {{ element.text }}
               <button @click="removeNote(element.id)" class="delete-btn">×</button>
             </div>
@@ -320,6 +330,7 @@ h1 {
   cursor: pointer;
   font-size: 16px;
   padding: 0;
+  aspect-ratio: 1;
 }
 
 .delete-btn:hover {
