@@ -2,6 +2,8 @@
 
 A PoC for a sprint retrospective board web app. Built for funsies/practicing Vue.js.
 
+Edit: Go check out the ongoing project on [https://sprintkit.io/](https://sprintkit.io/).
+
 ## Features
 
 - Complete "offline" for now (i.e. single player, no persistence, no BE)
